@@ -13,7 +13,7 @@ public class Car : MonoBehaviour
 
     public Transform parent;
 
-    public GameManager _gameManager;
+    public GameManager GameManager;
 
     public GameObject ParticlePoint;
 
@@ -31,21 +31,21 @@ public class Car : MonoBehaviour
     {
 
 
-        if (collision.gameObject.tag == "Parking")
+        if (collision.gameObject.CompareTag("Parking"))
         {
             carTechnics();
             transform.SetParent(parent);
 
-            _gameManager.carSpawn();
+            GameManager.carSpawn();
         }
 
 
         else if (collision.gameObject.CompareTag("Car"))
         {
-            _gameManager.accidentEffect.transform.position = ParticlePoint.transform.position;
-            _gameManager.accidentEffect.Play();
+            GameManager.accidentEffect.transform.position = ParticlePoint.transform.position;
+            GameManager.accidentEffect.Play();
             carTechnics();
-            _gameManager.Lose();
+            GameManager.Lose();
         }
 
     }
@@ -68,15 +68,15 @@ public class Car : MonoBehaviour
         else if (other.CompareTag("Diamond"))
         {
             other.gameObject.SetActive(false);
-            _gameManager.DiamondNumber++;
-            _gameManager.audios[0].Play();
+            GameManager.DiamondNumber++;
+            GameManager.audios[0].Play();
         }
         else if (other.CompareTag("OrtaGobek"))
         {
-            _gameManager.accidentEffect.transform.position = ParticlePoint.transform.position;
-            _gameManager.accidentEffect.Play();
+            GameManager.accidentEffect.transform.position = ParticlePoint.transform.position;
+            GameManager.accidentEffect.Play();
             carTechnics(); 
-            _gameManager.Lose();
+            GameManager.Lose();
         }
         else if (other.CompareTag("FrontParking"))
         {
